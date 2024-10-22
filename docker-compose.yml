@@ -51,8 +51,10 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
-    myphpadmin:
-        image: myphpadmin/myphpadmin
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        depends_on:
+            - mysql
         links:
             - mysql:mysql
         ports:
