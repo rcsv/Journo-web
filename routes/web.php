@@ -18,3 +18,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+// Journo アプリケーションのルーティング情報は下記のファイルで管理
+require __DIR__ . '/journo.php' ;
