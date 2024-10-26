@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         // add this line
         $this->call([
             UsersTableSeeder::class,
+            TripsTableSeeder::class,
+            TripEventsTableSeeder::class,
         ]);
     }
 }
