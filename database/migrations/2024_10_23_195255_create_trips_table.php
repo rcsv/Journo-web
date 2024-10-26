@@ -13,8 +13,15 @@ return new class extends Migration
     {
         Schema::create('trips', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // User ID は外部キーとして設定
             $table->string('title');
-            $table->text('description');
+            $table->string('destination');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->text('description')->nulable(); // 概要説明は任意
+            $table->decimal('cost',10,2)->nullable(); // 費用は10桁まで、小数点以下2桁
+            $table->string('image_path')->nullable(); // 画像パスは任意
+            $table->integer('number_of_people')->nullable() ; // 参加人数は任意
             $table->timestamps();
         });
     }
