@@ -15,14 +15,22 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
+        // make fake data with faker factory
         User::factory(10)->create();
 
         DB::table('users')->insert([
             'name'  => 'samantha',
             'email' => 'rcsvpg@outlook.com',
             'password' => bcrypt('M299Qppi'),
+            'role' => 'admin'
         ]);
 
+        DB::table('users')->insert([
+            'name'  => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+            'role' => 'admin'
+        ]);
         
     }
 }
