@@ -23,4 +23,18 @@ class Trip extends Model
         'number_of_people'
 
     ];
+
+    protected $rules = [
+        'title' => 'required|string|max:255',
+        'destination' => 'required|string',
+        'start_date' => 'required|date'
+    ];
+
+    protected function casts()
+    {
+        return [
+            'start_date' => 'datetime',
+            'end_date' => 'datetime',
+        ];
+    }
 }

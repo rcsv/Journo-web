@@ -1,5 +1,5 @@
-@foreach($users as $user)
+@foreach($trips as $trip)
 <p>
-    {{$user->name}}
+    {{$trip->title}}
 </p>
 @endforeach
