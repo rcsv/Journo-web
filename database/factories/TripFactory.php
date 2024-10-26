@@ -18,10 +18,18 @@ class TripFactory extends Factory
      */
     public function definition(): array
     {
+        $scheduled_date = fake()->dateTimeBetween('+1day', '+1year');
+
         return [
             //
             'title' => fake()->realText(),
+            'destination'   => fake()->text(),
+            'start_date'    => $scheduled_date->format('Y-m-d H:i:s'),
+            'end_date'      => $scheduled_date->modify('+1hour')->format('Y-m-d H:i:s'),
             'description' => fake()->text(),
+            'cost'         => fake()->numberBetween($min=1000,$max=9000),
+            // make user_id
+            'user_id' => fake()->numberBetween($min=1,$max=12),
         ];
     }
 }

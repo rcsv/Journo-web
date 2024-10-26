@@ -13,6 +13,14 @@ class Trip extends Model
 
     protected $fillable = [
         'title',
-        'description'
+        'user_id',
+        'destination',
+        'start_date',
+        'end_date',
+        'description',
+        'cost',
+        'image_path',
+        'number_of_people'
+
     ];
 }
