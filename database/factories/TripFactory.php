@@ -22,11 +22,11 @@ class TripFactory extends Factory
 
         return [
             //
-            'title' => fake()->realText(),
-            'destination'   => fake()->text(),
+            'title'         => fake()->sentence($nbWords=6, $varaiableNbWords=true),
+            'destination'   => fake()->address(),
             'start_date'    => $scheduled_date->format('Y-m-d H:i:s'),
             'end_date'      => $scheduled_date->modify('+1hour')->format('Y-m-d H:i:s'),
-            'description' => fake()->text(),
+            'description' => fake()->paragraph($nbSentences=3,$variableNbSentences=true),
             'cost'         => fake()->numberBetween($min=1000,$max=9000),
             // make user_id
             'user_id' => fake()->numberBetween($min=1,$max=12),
