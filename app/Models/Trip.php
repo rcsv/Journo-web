@@ -13,7 +13,7 @@ class Trip extends Model
 
     protected $fillable = [
         'title',
-        'user_id',
+        'user_id',              // add
         'destination',
         'start_date',
         'end_date',
@@ -27,7 +27,12 @@ class Trip extends Model
     protected $rules = [
         'title' => 'required|string|max:255',
         'destination' => 'required|string',
-        'start_date' => 'required|date'
+        'start_date' => 'required|date',
+        'end_date' => 'required|date'
+    ];
+
+    protected $guarded = [
+        'id'
     ];
 
     protected function casts()
@@ -36,5 +41,9 @@ class Trip extends Model
             'start_date' => 'datetime',
             'end_date' => 'datetime',
         ];
+    }
+
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }
