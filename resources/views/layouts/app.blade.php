@@ -30,6 +30,9 @@
 
             <!-- Page Content -->
             <main>
+                @if(session('message'))
+                    <div class="alert alert-success">{{ session('success')}}</div>
+                @endif
                 {{ $slot }}
             </main>
         </div>
