@@ -72,7 +72,7 @@ class TripController extends Controller
         if ($trip->user_id !== auth()->id()) {
             abort(404); // 所有者でない場合は、404 エラーを返す
         }
-        
+
         $data = [
             'pageTitle' => 'Trip Info',
             'trip' => $trip,
@@ -85,7 +85,11 @@ class TripController extends Controller
      */
     public function edit(Trip $trip)
     {
-        //
+        $data = [
+            'pageTitle' => 'Edit Trip : ' . $trip->title,
+            'trip' => $trip,
+        ];
+        return view('trip.edit', $data);
     }
 
     /**
@@ -93,7 +97,25 @@ class TripController extends Controller
      */
     public function update(Request $request, Trip $trip)
     {
-        //
+        $validated = $request->validate([
+            'title' =>  'required|max:20',
+            'destination' => 'required|max:30',
+
+        ]);
+
+        $validated['user_id'] = auth()->id();
+        $validated['start_date'] = date('Y-m-d H:i:s');
+        $validated['end_date'] = date('Y-m-d H:i:s');
+
+        // update trip data
+        $trip->update($validated);
+
+        // フラッシュメッセージをセッションに追加
+        return redirect()
+            ->route('trip.show', ['trip' => $trip->id])
+            ->with(
+                'success', 
+                'Your trip data has been updated successfully.');
     }
 
     /**
@@ -101,6 +123,6 @@ class TripController extends Controller
      */
     public function destroy(Trip $trip)
     {
-        //
+
     }
 }
